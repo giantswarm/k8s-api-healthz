@@ -3,6 +3,7 @@ package main
 import (
 	"flag"
 	"fmt"
+	"os"
 
 	"github.com/giantswarm/microerror"
 )
@@ -16,6 +17,11 @@ func main() {
 
 func mainError() error {
 	var err error
+
+	if os.Args[1] == "version" {
+		showVersion()
+		return nil
+	}
 
 	apiEndpoint := flag.String("api-endpoint", "https://127.0.0.1:443/healthz", "K8s API url that will be used for the api connection. Only secure connection is supported.")
 	apiCertPath := flag.String("api-cert", "/etc/kubernetes/ssl/apiserver-crt.pem", "Path to the cert file to authenticate against api.")
@@ -53,4 +59,8 @@ func mainError() error {
 		return microerror.Mask(err)
 	}
 	return nil
+}
+
+func showVersion() {
+	println("k8s-api-healthz 0.1.0")
 }
