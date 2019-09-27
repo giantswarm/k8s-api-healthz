@@ -18,11 +18,6 @@ func main() {
 func mainError() error {
 	var err error
 
-	if os.Args[1] == "version" {
-		showVersion()
-		return nil
-	}
-
 	apiEndpoint := flag.String("api-endpoint", "https://127.0.0.1:443/healthz", "K8s API url that will be used for the api connection. Only secure connection is supported.")
 	apiCertPath := flag.String("api-cert", "/etc/kubernetes/ssl/apiserver-crt.pem", "Path to the cert file to authenticate against api.")
 	apiCACertPath := flag.String("api-ca-cert", "/etc/kubernetes/ssl/apiserver-ca.pem", "Path to the cacert file to authenticate against api.")
@@ -32,6 +27,15 @@ func mainError() error {
 	etcdCACertPath := flag.String("etcd-ca-cert", "/etc/kubernetes/ssl/apiserver-ca.pem", "Path to the cacert file to authenticate against etcd.")
 	etcdKeyPath := flag.String("etcd-key", "/etc/kubernetes/ssl/apiserver-key.pem", "Path to the key file to authenticate against etcd.")
 	port := flag.Int("port", 8089, "Define a port on which the http server will be running.")
+
+	if os.Args[1] == "version" {
+		showVersion()
+		return nil
+	}
+	if os.Args[1] == "--help" {
+		flag.Usage()
+		return nil
+	}
 	flag.Parse()
 
 	var healthz *Healthz
