@@ -143,7 +143,7 @@ func (h *Healthz) handleHealthCheck(w http.ResponseWriter, r *http.Request) {
 	if h.etcdHealthCheck() && h.apiHealthCheck() {
 		fmt.Fprint(w, "OK")
 	} else {
-		http.Error(w, "etcd and/or k8s api healthz check failed", http.StatusInternalServerError)
+		http.Error(w, "FAILED", http.StatusInternalServerError)
 	}
 }
 
