@@ -46,7 +46,7 @@ func mainError() error {
 		showVersion()
 		return nil
 	}
-	if os.Args[1] == "--help" {
+	if len(os.Args) > 1 && os.Args[1] == "--help" {
 		flag.Usage()
 		return nil
 	}
