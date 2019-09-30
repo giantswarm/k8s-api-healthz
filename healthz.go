@@ -1,6 +1,7 @@
 package main
 
 import (
+	"context"
 	"crypto/tls"
 	"fmt"
 	"net/http"
@@ -130,7 +131,7 @@ func NewHealtz(c HealtzConfig) (*Healthz, error) {
 }
 
 // BootHealthServer will start http server with `/healthz` endpoint
-func (h *Healthz) BootHealthServer() error {
+func (h *Healthz) Boot(ctx context.Context) error {
 	listenOn := fmt.Sprintf(":%d", h.port)
 
 	http.HandleFunc("/healthz", h.handleHealthCheck)

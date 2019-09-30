@@ -1,6 +1,7 @@
 package main
 
 import (
+	"context"
 	"fmt"
 	"os"
 
@@ -71,7 +72,8 @@ func mainError() error {
 		}
 	}
 
-	err = healthz.BootHealthServer()
+	ctx := context.Background()
+	err = healthz.Boot(ctx)
 	if err != nil {
 		return microerror.Mask(err)
 	}
