@@ -3,6 +3,7 @@ package main
 import (
 	"context"
 	"fmt"
+	"github.com/giantswarm/k8s-api-healthz/pkg/project"
 	"os"
 
 	"github.com/giantswarm/microerror"
@@ -43,7 +44,7 @@ func mainError() error {
 	flag.IntVar(&f.Port, "port", 8089, "Define a port on which the http server will be running.")
 
 	if len(os.Args) > 1 && os.Args[1] == "version" {
-		showVersion()
+		fmt.Printf("%s:%s - %s", project.Name(), project.Version(), project.GitSHA())
 		return nil
 	}
 	if len(os.Args) > 1 && os.Args[1] == "--help" {
@@ -78,8 +79,4 @@ func mainError() error {
 		return microerror.Mask(err)
 	}
 	return nil
-}
-
-func showVersion() {
-	println("k8s-api-healthz 0.1.0")
 }
