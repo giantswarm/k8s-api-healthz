@@ -9,6 +9,7 @@ import (
 	"time"
 
 	"github.com/giantswarm/microerror"
+	"github.com/giantswarm/micrologger"
 )
 
 const (
@@ -37,6 +38,7 @@ type Healthz struct {
 	apiHttpClient     *http.Client
 	etcdHttpTransport *http.Transport
 	etcdHttpClient    *http.Client
+	logger            micrologger.Logger
 }
 
 func NewHealtz(c HealtzConfig) (*Healthz, error) {
@@ -91,6 +93,16 @@ func NewHealtz(c HealtzConfig) (*Healthz, error) {
 		return nil, microerror.Maskf(err, "failed to load etcd cert key pair")
 	}
 
+	var logger micrologger.Logger
+	{
+		c := micrologger.Config{}
+
+		logger, err = micrologger.New(c)
+		if err != nil {
+			return nil, microerror.Mask(err)
+		}
+	}
+
 	apiHttpTransport := &http.Transport{
 		TLSClientConfig: &tls.Config{
 			Certificates:       []tls.Certificate{apiCertPair},
@@ -126,6 +138,8 @@ func NewHealtz(c HealtzConfig) (*Healthz, error) {
 		apiHttpTransport:  apiHttpTransport,
 		etcdHttpClient:    etcdHttpClient,
 		etcdHttpTransport: etcdHttpTransport,
+
+		logger: logger,
 	}
 	return h, nil
 }
@@ -164,6 +178,7 @@ func (h *Healthz) apiHealthCheck() bool {
 	_, err = h.apiHttpClient.Do(req)
 	if err != nil {
 		// check failed
+		h.logger.Log("level", "info", "message", "api health check failed", "reason", err)
 		return false
 	}
 	// all OK
@@ -183,9 +198,10 @@ func (h *Healthz) etcdHealthCheck() bool {
 	req.Header.Add("Connection", "close")
 
 	// send request to http endpoint
-	_, err = h.apiHttpClient.Do(req)
+	_, err = h.etcdHttpClient.Do(req)
 	if err != nil {
 		// check failed
+		h.logger.Log("level", "info", "message", "etcd health check failed", "reason", err)
 		return false
 	}
 	// all OK
