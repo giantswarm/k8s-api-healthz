@@ -34,7 +34,7 @@ func mainError() error {
 
 	var f Flag
 	flag.StringVar(&f.ApiEndpoint, "api-endpoint", "https://127.0.0.1:443/healthz", "K8s API url that will be used for the API connection. Only a secure connection is supported.")
-	flag.StringVar(&f.ApiCertPath, "api-cert", "/etc/kubernetes/ssl/apiserver-crt.pem", "Path to the cert file to authenticate against api.")
+	flag.StringVar(&f.ApiCertPath, "api-cert", "/etc/kubernetes/ssl/apiserver-crt.pem", "Path to the client certificate file to authenticate with against the API.")
 	flag.StringVar(&f.ApiCACertPath, "api-ca-cert", "/etc/kubernetes/ssl/apiserver-ca.pem", "Path to the cacert file to authenticate against api.")
 	flag.StringVar(&f.ApiKeyPath, "api-key", "/etc/kubernetes/ssl/apiserver-key.pem", "Path to the key file to authenticate against api.")
 	flag.StringVar(&f.EtcdEndpoint, "etcd-endpoint", "https://127.0.0.1:2379/health", "ETCD url that will be used for the etcd connection. Only secure connection is supported.")
