@@ -17,7 +17,7 @@ const (
 	maxTimeoutSec     = 4
 )
 
-type HealtzConfig struct {
+type HealthzConfig struct {
 	ApiEndpoint    string
 	ApiCertPath    string
 	ApiCACertPath  string
@@ -41,7 +41,7 @@ type Healthz struct {
 	logger            micrologger.Logger
 }
 
-func NewHealtz(c HealtzConfig) (*Healthz, error) {
+func NewHealthz(c HealthzConfig) (*Healthz, error) {
 	if c.ApiEndpoint == "" {
 		return nil, microerror.Maskf(invalidConfigError, "%T.ApiEndpoint cannot be empty", c)
 	}

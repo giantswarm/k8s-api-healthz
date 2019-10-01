@@ -55,7 +55,7 @@ func mainError() error {
 
 	var healthz *Healthz
 	{
-		healthzConfig := HealtzConfig{
+		healthzConfig := HealthzConfig{
 			ApiEndpoint:    f.EtcdEndpoint,
 			ApiCertPath:    f.ApiCertPath,
 			ApiCACertPath:  f.ApiCACertPath,
@@ -67,7 +67,7 @@ func mainError() error {
 			Port:           f.Port,
 		}
 
-		healthz, err = NewHealtz(healthzConfig)
+		healthz, err = NewHealthz(healthzConfig)
 		if err != nil {
 			return microerror.Mask(err)
 		}
