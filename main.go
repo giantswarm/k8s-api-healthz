@@ -41,7 +41,7 @@ func mainError() error {
 	flag.StringVar(&f.EtcdCertPath, "etcd-cert", "/etc/kubernetes/ssl/apiserver-crt.pem", "Path to the client certificate file to authenticate with against etcd.")
 	flag.StringVar(&f.EtcdCACertPath, "etcd-ca-cert", "/etc/kubernetes/ssl/apiserver-ca.pem", "Path to the CA file containing the issuer of the client certificate passed via --etcd-cert.")
 	flag.StringVar(&f.EtcdKeyPath, "etcd-key", "/etc/kubernetes/ssl/apiserver-key.pem", "Path to the private key file to authenticate with against etcd.")
-	flag.IntVar(&f.Port, "port", 8089, "Define a port on which the http server will be running.")
+	flag.IntVar(&f.Port, "port", 8089, "TCP port on which the HTTP server will be listening.")
 
 	if len(os.Args) > 1 && os.Args[1] == "version" {
 		fmt.Printf("%s:%s - %s", project.Name(), project.Version(), project.GitSHA())
