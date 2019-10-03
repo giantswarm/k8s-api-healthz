@@ -38,9 +38,9 @@ func mainError() error {
 	flag.StringVar(&f.ApiCACertPath, "api-ca-cert", "/etc/kubernetes/ssl/apiserver-ca.pem", "Path to the CA file containing the issuer for the client certificate passed via --api-cert.")
 	flag.StringVar(&f.ApiKeyPath, "api-key", "/etc/kubernetes/ssl/apiserver-key.pem", "Path to the private key file to authenticate with against the API.")
 	flag.StringVar(&f.EtcdEndpoint, "etcd-endpoint", "https://127.0.0.1:2379/health", "URL that will be used for the etcd connection. Only a secure connection is supported.")
-	flag.StringVar(&f.EtcdCertPath, "etcd-cert", "/etc/kubernetes/ssl/apiserver-crt.pem", "Path to the client certificate file to authenticate with against etcd.")
-	flag.StringVar(&f.EtcdCACertPath, "etcd-ca-cert", "/etc/kubernetes/ssl/apiserver-ca.pem", "Path to the CA file containing the issuer of the client certificate passed via --etcd-cert.")
-	flag.StringVar(&f.EtcdKeyPath, "etcd-key", "/etc/kubernetes/ssl/apiserver-key.pem", "Path to the private key file to authenticate with against etcd.")
+	flag.StringVar(&f.EtcdCertPath, "etcd-cert", "/etc/kubernetes/ssl/etcd/client-crt.pem", "Path to the client certificate file to authenticate with against etcd.")
+	flag.StringVar(&f.EtcdCACertPath, "etcd-ca-cert", "/etc/kubernetes/ssl/etcd/client-ca.pem", "Path to the CA file containing the issuer of the client certificate passed via --etcd-cert.")
+	flag.StringVar(&f.EtcdKeyPath, "etcd-key", "/etc/kubernetes/ssl/etcd/client-key.pem", "Path to the private key file to authenticate with against etcd.")
 	flag.IntVar(&f.Port, "port", 8089, "TCP port on which the HTTP server will be listening.")
 
 	if len(os.Args) > 1 && os.Args[1] == "version" {

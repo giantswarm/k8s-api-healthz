@@ -107,6 +107,7 @@ func NewHealthz(c HealthzConfig) (*Healthz, error) {
 		TLSClientConfig: &tls.Config{
 			Certificates:       []tls.Certificate{apiCertPair},
 			ClientCAs:          apiCaCert,
+			RootCAs:            apiCaCert,
 			InsecureSkipVerify: false,
 		},
 		MaxIdleConns: maxIdleConnection,
@@ -120,6 +121,7 @@ func NewHealthz(c HealthzConfig) (*Healthz, error) {
 		TLSClientConfig: &tls.Config{
 			Certificates:       []tls.Certificate{etcdCertPair},
 			ClientCAs:          etcdCaCert,
+			RootCAs:            etcdCaCert,
 			InsecureSkipVerify: false,
 		},
 		MaxIdleConns: maxIdleConnection,
