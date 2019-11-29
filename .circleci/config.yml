@@ -1,4 +1,7 @@
-version: 2
+version: 2.1
+orbs:
+  architect: giantswarm/architect@0.4.3
+
 jobs:
   build:
     machine: true
@@ -15,3 +18,16 @@ jobs:
           if [ "${CIRCLE_BRANCH}" == "master" ]; then
             ./architect deploy
           fi
+
+workflows:
+  build:
+    jobs:
+      - build:
+
+      - architect/push-to-docker:
+          name: push-k8s-api-healthz-to-aliyun
+          image: "registry-intl.cn-shanghai.aliyuncs.com/giantswarm/k8s-api-healthz"
+          username_envar: "ALIYUN_USERNAME"
+          password_envar: "ALIYUN_PASSWORD"
+          requires:
+            - build
