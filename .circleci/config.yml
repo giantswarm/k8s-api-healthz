@@ -20,7 +20,7 @@ jobs:
           fi
 
 workflows:
-  build:
+  build_e2e:
     jobs:
       - build:
 
