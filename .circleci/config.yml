@@ -31,3 +31,10 @@ workflows:
           password_envar: "ALIYUN_PASSWORD"
           requires:
             - build
+
+      - deploy:
+          filters:
+            branches:
+              only: master
+          requires:
+          - build
