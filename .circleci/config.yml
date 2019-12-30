@@ -35,7 +35,7 @@ workflows:
             tags:
               only: /^v.*/
 
-      - architect/push-to-docker:
+      - architect/push-to-docker-legacy:
           name: push-k8s-api-healthz-to-aliyun
           image: "registry-intl.cn-shanghai.aliyuncs.com/giantswarm/k8s-api-healthz"
           username_envar: "ALIYUN_USERNAME"
