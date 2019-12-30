@@ -1,6 +1,6 @@
 version: 2.1
 orbs:
-  architect: giantswarm/architect@0.4.3
+  architect: giantswarm/architect@0.4.5
 
 jobs:
   build:
@@ -16,6 +16,11 @@ jobs:
           ./architect version
 
     - run: ./architect build
+    - persist_to_workspace:
+        root: .
+        paths:
+        - ./k8s-api-healthz
+        - ./architect
 
   deploy:
     machine: true
