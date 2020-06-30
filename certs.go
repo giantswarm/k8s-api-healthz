@@ -2,8 +2,9 @@ package main
 
 import (
 	"crypto/x509"
-	"github.com/giantswarm/microerror"
 	"io/ioutil"
+
+	"github.com/giantswarm/microerror"
 )
 
 // CertPoolFromFile returns an x509.CertPool containing the certificates
