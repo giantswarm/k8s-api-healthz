@@ -70,28 +70,28 @@ func NewHealthz(c HealthzConfig) (*Healthz, error) {
 	apiUrl, err := url.Parse(c.ApiEndpoint)
 	if err != nil {
 		return nil, microerror.Mask(err)
-)	}
+	}
 	etcdUrl, err := url.Parse(c.EtcdEndpoint)
 	if err != nil {
 		return nil, microerror.Mask(err)
-)	}
+	}
 
 	apiCertPair, err := tls.LoadX509KeyPair(c.ApiCertPath, c.ApiKeyPath)
 	if err != nil {
 		return nil, microerror.Mask(err)
-)	}
+	}
 	etcdCertPair, err := tls.LoadX509KeyPair(c.EtcdCertPath, c.EtcdKeyPath)
 	if err != nil {
 		return nil, microerror.Mask(err)
-)	}
+	}
 	apiCaCert, err := CertPoolFromFile(c.EtcdCACertPath)
 	if err != nil {
 		return nil, microerror.Mask(err)
-)	}
+	}
 	etcdCaCert, err := CertPoolFromFile(c.EtcdCACertPath)
 	if err != nil {
 		return nil, microerror.Mask(err)
-)	}
+	}
 
 	var logger micrologger.Logger
 	{

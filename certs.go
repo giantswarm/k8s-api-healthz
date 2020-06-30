@@ -15,10 +15,10 @@ func CertPoolFromFile(filename string) (*x509.CertPool, error) {
 	b, err := ioutil.ReadFile(filename)
 	if err != nil {
 		return nil, microerror.Mask(err)
-)	}
+	}
 	cp := x509.NewCertPool()
 	if !cp.AppendCertsFromPEM(b) {
 		return nil, microerror.Mask(err)
-)	}
+	}
 	return cp, nil
 }
