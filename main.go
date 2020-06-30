@@ -3,8 +3,9 @@ package main
 import (
 	"context"
 	"fmt"
-	"github.com/giantswarm/k8s-api-healthz/pkg/project"
 	"os"
+
+	"github.com/giantswarm/k8s-api-healthz/pkg/project"
 
 	"github.com/giantswarm/microerror"
 	flag "github.com/spf13/pflag"
