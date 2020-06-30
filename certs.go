@@ -14,11 +14,11 @@ import (
 func CertPoolFromFile(filename string) (*x509.CertPool, error) {
 	b, err := ioutil.ReadFile(filename)
 	if err != nil {
-		return nil, microerror.Maskf(err, "can't read CA file: %v", filename)
-	}
+		return nil, microerror.Mask(err)
+)	}
 	cp := x509.NewCertPool()
 	if !cp.AppendCertsFromPEM(b) {
-		return nil, microerror.Maskf(err, "failed to append certificates from file: %s", filename)
-	}
+		return nil, microerror.Mask(err)
+)	}
 	return cp, nil
 }
