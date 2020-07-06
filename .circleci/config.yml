@@ -24,3 +24,31 @@ workflows:
           filters:
             tags:
               only: /^v.*/
+
+      - architect/push-to-docker:
+          context: architect
+          name: push-to-aliyun-master
+          image: "registry-intl.cn-shanghai.aliyuncs.com/giantswarm/k8s-setup-network-environment"
+          username_envar: "ALIYUN_USERNAME"
+          password_envar: "ALIYUN_PASSWORD"
+          requires:
+            - go-build
+          filters:
+            branches:
+              only: master
+            tags:
+              only: /^v.*/
+
+      - architect/push-to-docker:
+          context: architect
+          name: push-to-aliyun-pr
+          image: "registry-intl.cn-shanghai.aliyuncs.com/giantswarm/k8s-setup-network-environment"
+          username_envar: "ALIYUN_USERNAME"
+          password_envar: "ALIYUN_PASSWORD"
+          requires:
+            - go-build
+          filters:
+            branches:
+              ignore: master
+            tags:
+              ignore: /^v.*/
