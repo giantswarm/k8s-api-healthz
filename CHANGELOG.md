@@ -9,6 +9,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Require TLS 1.2 or above.
+
 ## [0.1.1] - 2020-07-06
 
 ### Added
