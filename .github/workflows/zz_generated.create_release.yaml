@@ -46,7 +46,7 @@ jobs:
           echo "::set-output name=version::${version}"
       - name: Checkout code
         if: ${{ steps.get_version.outputs.version != '' }}
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: Get project.go path
         id: get_project_go_path
         if: ${{ steps.get_version.outputs.version != '' }}
@@ -115,7 +115,7 @@ jobs:
           chmod +x /opt/bin/*
           echo "::add-path::/opt/bin"
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: Update project.go
         id: update_project_go
         run: |
@@ -149,7 +149,7 @@ jobs:
     if: ${{ needs.gather_facts.outputs.version }}
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           ref: ${{ github.sha }}
       - name: Ensure correct version in project.go
