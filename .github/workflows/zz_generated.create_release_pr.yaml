@@ -151,13 +151,13 @@ jobs:
           path: /opt/bin
       - name: Download architect artifact to /opt/bin
         if: ${{ steps.cache.outputs.cache-hit != 'true' }}
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v3
         with:
           name: architect
           path: /opt/bin
       - name: Download hub artifact to /opt/bin
         if: ${{ steps.cache.outputs.cache-hit != 'true' }}
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v3
         with:
           name: hub
           path: /opt/bin
