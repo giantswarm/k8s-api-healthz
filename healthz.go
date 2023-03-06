@@ -170,6 +170,8 @@ func (h *Healthz) apiHealthCheck() bool {
 	// be sure to close idle connection after health check is finished
 	defer h.apiHttpTransport.CloseIdleConnections()
 
+	h.logger.Log("level", "info", "message", fmt.Sprintf("curling %s", h.apiUrl.String()))
+	
 	req, err := http.NewRequest("GET", h.apiUrl.String(), nil)
 	if err != nil {
 		panic(fmt.Sprintf("unable to construct health check request: %q", err))
