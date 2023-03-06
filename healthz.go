@@ -153,7 +153,7 @@ func (h *Healthz) Boot(ctx context.Context) error {
 	listenOn := fmt.Sprintf(":%d", h.port)
 
 	http.HandleFunc("/healthz", h.handleHealthCheck)
-	err := http.ListenAndServe(listenOn, nil)
+	err := http.ListenAndServe(listenOn, nil) // nolint:gosec
 
 	return microerror.Mask(err)
 }
@@ -182,7 +182,7 @@ func (h *Healthz) apiHealthCheck() bool {
 	_, err = h.apiHttpClient.Do(req)
 	if err != nil {
 		// check failed
-		h.logger.Log("level", "info", "message", "api health check failed", "reason", err)
+		h.logger.Log("level", "info", "message", fmt.Sprintf("api health check failed (tried connecting to %s)", h.apiUrl.String()), "reason", err)
 		return false
 	}
 	// all OK
@@ -205,7 +205,7 @@ func (h *Healthz) etcdHealthCheck() bool {
 	_, err = h.etcdHttpClient.Do(req)
 	if err != nil {
 		// check failed
-		h.logger.Log("level", "info", "message", "etcd health check failed", "reason", err)
+		h.logger.Log("level", "info", "message", fmt.Sprintf("etcd health check failed (tried connecting to %s)", h.etcdUrl.String()), "reason", err)
 		return false
 	}
 	// all OK
