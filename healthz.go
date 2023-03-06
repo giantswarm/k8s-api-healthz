@@ -170,7 +170,7 @@ func (h *Healthz) apiHealthCheck() bool {
 	// be sure to close idle connection after health check is finished
 	defer h.apiHttpTransport.CloseIdleConnections()
 
-	h.logger.Log("level", "info", "message", fmt.Sprintf("curling %s", h.apiUrl.String()))
+	h.logger.Log("level", "info", "message", fmt.Sprintf("API: curling %s", h.apiUrl.String()))
 	
 	req, err := http.NewRequest("GET", h.apiUrl.String(), nil)
 	if err != nil {
@@ -194,6 +194,8 @@ func (h *Healthz) apiHealthCheck() bool {
 func (h *Healthz) etcdHealthCheck() bool {
 	// be sure to close idle connection after health check is finished
 	defer h.etcdHttpTransport.CloseIdleConnections()
+
+        h.logger.Log("level", "info", "message", fmt.Sprintf("ETCD: curling %s", h.etcdUrl.String()))
 
 	req, err := http.NewRequest("GET", h.etcdUrl.String(), nil)
 	if err != nil {
