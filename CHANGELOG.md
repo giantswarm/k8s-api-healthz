@@ -13,6 +13,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Require TLS 1.2 or above.
 
+# Fixed
+
+- Fixed wiring issue that made API healthcheck probes to be sent to etcd endpoint instead.
+
 ## [0.1.1] - 2020-07-06
 
 ### Added
