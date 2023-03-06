@@ -5,7 +5,7 @@ var (
 	gitSHA             = "n/a"
 	name        string = "k8s-api-healthz"
 	source      string = "https://github.com/giantswarm/k8s-api-healthz"
-	version            = "0.2.0"
+	version            = "0.2.1-dev"
 )
 
 func Description() string {
