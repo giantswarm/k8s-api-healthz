@@ -56,8 +56,8 @@ func mainError() error {
 
 	var healthz *Healthz
 	{
-		healthzConfig := HealthzConfig{
-			ApiEndpoint:    f.EtcdEndpoint,
+		healthzConfig := HealthzConfig{ // nolint:gosimple
+			ApiEndpoint:    f.ApiEndpoint,
 			ApiCertPath:    f.ApiCertPath,
 			ApiCACertPath:  f.ApiCACertPath,
 			ApiKeyPath:     f.ApiKeyPath,
