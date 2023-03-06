@@ -153,7 +153,7 @@ func (h *Healthz) Boot(ctx context.Context) error {
 	listenOn := fmt.Sprintf(":%d", h.port)
 
 	http.HandleFunc("/healthz", h.handleHealthCheck)
-	err := http.ListenAndServe(listenOn, nil)
+	err := http.ListenAndServe(listenOn, nil) // nolint:gosec
 
 	return microerror.Mask(err)
 }
