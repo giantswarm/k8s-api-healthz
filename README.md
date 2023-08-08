@@ -1,4 +1,4 @@
-[![CircleCI](https://circleci.com/gh/giantswarm/k8s-api-healthz.svg?style=shield)](https://circleci.com/gh/giantswarm/k8s-api-healthz) [![Docker Repository on Quay](https://quay.io/repository/giantswarm/k8s-api-healthz/status "Docker Repository on Quay")](https://quay.io/repository/giantswarm/k8s-api-healthz)
+[![CircleCI](https://dl.circleci.com/status-badge/img/gh/giantswarm/k8s-api-healthz/tree/master.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/giantswarm/k8s-api-healthz/tree/master)
 
 # k8s-api-healthz
 
