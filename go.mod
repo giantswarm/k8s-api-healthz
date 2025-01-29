@@ -5,7 +5,7 @@ go 1.19
 require (
 	github.com/giantswarm/microerror v0.4.1
 	github.com/giantswarm/micrologger v1.1.2
-	github.com/spf13/pflag v1.0.5
+	github.com/spf13/pflag v1.0.6
 )
 
 require (
