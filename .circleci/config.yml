@@ -26,6 +26,7 @@ workflows:
               only: /^v.*/
 
       - architect/upload-release-assets:
+          binary: k8s-api-healthz
           context: architect
           name: upload-release-assets
           requires:
