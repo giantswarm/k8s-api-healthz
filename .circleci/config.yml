@@ -10,6 +10,7 @@ workflows:
           context: architect
           name: go-build
           binary: k8s-api-healthz
+          architectures: "linux/amd64,linux/arm64,darwin/amd64,darwin/arm64,windows/amd64,windows/arm64"
           filters:
             tags:
               only: /^v.*/
@@ -19,7 +20,19 @@ workflows:
           name: push-to-registries
           requires:
             - go-build
+          platforms: "linux/amd64,linux/arm64"
           filters:
             tags:
               only: /^v.*/
 
+      - architect/upload-release-assets:
+          binary: k8s-api-healthz
+          context: architect
+          name: upload-release-assets
+          requires:
+            - go-build
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /^v.*/
