@@ -12,7 +12,7 @@ import (
 // Returns an error if the file could not be read, a certificate could not
 // be parsed, or if the file does not contain any certificates
 func CertPoolFromFile(filename string) (*x509.CertPool, error) {
-	b, err := os.ReadFile(filename)
+	b, err := os.ReadFile(filename) // #nosec G304
 	if err != nil {
 		return nil, microerror.Mask(err)
 	}
